@@ -4,8 +4,7 @@ import {
   currentCityRemovedAction,
   citiesLoadedAction,
   weatherForecastLoadedAction,
-  favoriteCitiesWeatherLoadedAction,
-  favBtnStyleChangedAction
+  favoriteCitiesWeatherLoadedAction
 } from './actions'
 import AccuweatherService from '../services/accuweather-service'
 

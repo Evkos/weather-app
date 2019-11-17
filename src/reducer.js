@@ -60,7 +60,6 @@ const reducer = (state = initialState, action) => {
     case 'FAVORITE_CITIES_WEATHER_LOADED':
       const updatedFavoriteCitiesWeather = {...state.favoriteCitiesWeather }
       updatedFavoriteCitiesWeather[action.payload.cityId] =  action.payload
-      console.log(updatedFavoriteCitiesWeather)
       return {
         ...state,
         favoriteCitiesWeather: updatedFavoriteCitiesWeather,
