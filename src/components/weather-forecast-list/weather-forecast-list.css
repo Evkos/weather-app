@@ -1,0 +1,8 @@
+.weather-forecast-list .forecast-item-wrapper{
+    display: flex;
+    width: 100%;
+}
+.weather-forecast-list .forecast-item{
+     display: flex;
+     width: 100%;
+ }
