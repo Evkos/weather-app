@@ -8,6 +8,7 @@ const initialState = {
   favoriteCitiesWeather: {},
   isCelsius: true,
   degreeBtn: 'To Fahrenheit',
+  showTokenPopup: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -44,22 +45,22 @@ const reducer = (state = initialState, action) => {
         loading: false
       }
     case 'FAVORITE_CITY_ADDED':
-      const updatedFavoriteCitiesAdd = {...state.favoriteCities }
-      updatedFavoriteCitiesAdd[action.payload.id] =  action.payload
+      const updatedFavoriteCitiesAdd = { ...state.favoriteCities }
+      updatedFavoriteCitiesAdd[action.payload.id] = action.payload
       return {
         ...state,
         favoriteCities: updatedFavoriteCitiesAdd
       }
     case 'FAVORITE_CITY_REMOVED':
-      const updatedFavoriteCitiesRemove = {...state.favoriteCities }
+      const updatedFavoriteCitiesRemove = { ...state.favoriteCities }
       delete updatedFavoriteCitiesRemove[action.payload.id]
       return {
         ...state,
         favoriteCities: updatedFavoriteCitiesRemove
       }
     case 'FAVORITE_CITIES_WEATHER_LOADED':
-      const updatedFavoriteCitiesWeather = {...state.favoriteCitiesWeather }
-      updatedFavoriteCitiesWeather[action.payload.cityId] =  action.payload
+      const updatedFavoriteCitiesWeather = { ...state.favoriteCitiesWeather }
+      updatedFavoriteCitiesWeather[action.payload.cityId] = action.payload
       return {
         ...state,
         favoriteCitiesWeather: updatedFavoriteCitiesWeather,
@@ -76,6 +77,12 @@ const reducer = (state = initialState, action) => {
         degreeBtn: (state.isCelsius) ? 'To Celsius' : 'To Fahrenheit',
         isCelsius: !state.isCelsius,
 
+      }
+
+    case 'TOKEN_POPUP_SHOWED':
+      return {
+        ...state,
+        showTokenPopup: !state.showTokenPopup
       }
 
     default:

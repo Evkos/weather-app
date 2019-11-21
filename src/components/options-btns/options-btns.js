@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { Button, Card, Col } from 'react-bootstrap'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
+import TokenPopup from '../token-popup'
 import {
   favoriteCityAddedAction,
   favoriteCityRemovedAction,
-  fahrenheitSwitchedAction
+  fahrenheitSwitchedAction,
+  tokenPopupShowedAction
 } from '../../actions/actions'
 
 class OptionsBtns extends Component {
@@ -25,6 +27,11 @@ class OptionsBtns extends Component {
     fahrenheitSwitchedAction()
   }
 
+  showPopup = () => {
+    const { tokenPopupShowedAction } = this.props
+    tokenPopupShowedAction()
+  }
+
   render () {
     const { degreeBtn, favoriteCities, currentCity } = this.props
     let label = 'Add to Favorites'
@@ -42,10 +49,13 @@ class OptionsBtns extends Component {
             <Button onClick={this.switchFavoriteLocation} variant={variant}
                     className="d-block mx-auto mb-2">{label}</Button>
             <Button onClick={this.switchDegrees}
-                    className="d-block mx-auto">{degreeBtn}</Button>
+                    className="d-block mx-auto mb-2">{degreeBtn}</Button>
+            <Button className="d-block mx-auto" onClick={this.showPopup}>
+              Update access token
+            </Button>
           </Card.Body>
         </Card>
-
+        <TokenPopup/>
       </Col>
     )
   }
@@ -58,7 +68,8 @@ const mapStateToProps = ({ currentCity, favoriteCities, degreeBtn }) => {
 const mapDispatchToProps = {
   favoriteCityAddedAction,
   fahrenheitSwitchedAction,
-  favoriteCityRemovedAction
+  favoriteCityRemovedAction,
+  tokenPopupShowedAction
 }
 
 export default compose(

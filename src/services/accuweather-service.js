@@ -3,7 +3,7 @@ import { _transformFahrenheitToCelsius, _getDayOfWeek } from '../utils'
 export default class AccuweatherService {
 
   _apiBase = 'https://dataservice.accuweather.com'
-  _applicationToken = 'rVwzZhhGfzrjX170eNqcfrxok4GUjEJx'
+  _applicationToken = localStorage.getItem('accessToken')
 
   getResource = async (url, params = '') => {
     const res = await fetch(`${this._apiBase}${url}?apikey=${this._applicationToken}${params}`)
