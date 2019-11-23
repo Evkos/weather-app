@@ -6,24 +6,31 @@ export default class AccuweatherService {
   _applicationToken = localStorage.getItem('accessToken')
 
   getResource = async (url, params = '') => {
-    const res = await fetch(`${this._apiBase}${url}?apikey=${this._applicationToken}${params}`)
 
-    if (!res.ok) {
-      throw new Error(`Could not fetch ${url}` +
-        `, received ${res.status}`)
+    try {
+      const res = await fetch(`${this._apiBase}${url}?apikey=${this._applicationToken}${params}`)
+      return await res.json()
+    } catch (error) {
+      return new Error(error)
     }
-    return await res.json()
+
   }
-//TODO make this method cacheable
+
   getCities = async (searchString) => {
-    const cities = await this.getResource(`/locations/v1/cities/autocomplete`, `&q=${searchString}`)
-    return this._transformCities(cities)
+
+    try{
+      const cities = await this.getResource(`/locations/v1/cities/autocomplete`, `&q=${searchString}`)
+      return this._transformCities(cities)
+    }
+    catch(error){
+      return new Error(error)
+    }
+
   }
 
   getCity = async (searchString) => {
     const matchedCities = await this.getCities(searchString)
     if (matchedCities) {
-      let city = matchedCities.find(item => item.label === searchString)
       return matchedCities.find(item => item.label === searchString)
     }
   }

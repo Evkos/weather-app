@@ -4,7 +4,8 @@ import {
   currentCityRemovedAction,
   citiesLoadedAction,
   weatherForecastLoadedAction,
-  favoriteCitiesWeatherLoadedAction
+  favoriteCitiesWeatherLoadedAction,
+  tokenPopupShowedAction
 } from './actions'
 import AccuweatherService from '../services/accuweather-service'
 
@@ -36,6 +37,9 @@ const currentCityLoadedMiddleware = (currentCityLabel) => {
   return (dispatch) => {
     accuweatherService.getCity(currentCityLabel)
       .then((currentCity) => dispatch(currentCitySelectedMiddleware(currentCity)))
+      .catch(() => {
+        dispatch(tokenPopupShowedAction())
+      })
   }
 }
 

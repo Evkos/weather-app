@@ -21,7 +21,7 @@ class Search extends Component {
   }
 
   render () {
-    const { cities, currentCity, loading, citiesLoadedMiddleware, currentCitySelectedMiddleware, favBtnStyleChangedMiddleware } = this.props
+    const { cities, currentCity, loading, citiesLoadedMiddleware, currentCitySelectedMiddleware } = this.props
     return (
       <Col md={5} className="mb-4">
         <Card>
