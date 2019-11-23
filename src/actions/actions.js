@@ -58,6 +58,13 @@ const fahrenheitSwitchedAction = () => {
     type: 'FAHRENHEIT_SWITCHED',
   }
 }
+
+const tokenPopupShowedAction = () => {
+  return {
+    type: 'TOKEN_POPUP_SHOWED',
+  }
+}
+
 export {
   citiesLoadedAction,
   currentCityLoadedAction,
@@ -67,5 +74,6 @@ export {
   favoriteCityAddedAction,
   favoriteCityRemovedAction,
   fahrenheitSwitchedAction,
-  favoriteCitiesWeatherLoadedAction
+  favoriteCitiesWeatherLoadedAction,
+  tokenPopupShowedAction
 }
